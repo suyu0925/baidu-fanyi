@@ -27,11 +27,11 @@ type TranslateOption = {
   to: Lang
 }
 
-class Translater {
+export class Translater {
   constructor(private appid: string, private key: string) {
   }
 
-  async translate(q: string, options?: TranslateOption) {
+  async translate(q: string, options?: TranslateOption): Promise<string> {
     const { from = 'auto', to = 'en' } = options ?? {}
     const req: TranslateReq = {
       from,
@@ -54,3 +54,5 @@ class Translater {
 }
 
 export default Translater
+
+exports = Translater

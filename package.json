@@ -1,6 +1,6 @@
 {
   "name": "baidu-fanyi",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "baidu fanyi api on node.js",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -9,7 +9,8 @@
   "license": "MIT",
   "scripts": {
     "build": "rimraf dist && tsc",
-    "test": "jest"
+    "test": "jest",
+    "publish": "npm build && npm publish"
   },
   "dependencies": {
     "axios": "^0.27.2"
