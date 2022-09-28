@@ -10,7 +10,7 @@
   "scripts": {
     "build": "rimraf dist && tsc",
     "test": "jest",
-    "publish": "npm build && npm publish"
+    "prepublish": "yarn build"
   },
   "dependencies": {
     "axios": "^0.27.2"
