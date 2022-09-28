@@ -1,7 +1,16 @@
-import { createHash } from 'crypto'
 import axios from 'axios'
+import { createHash, randomBytes } from 'crypto'
 
-type Lang = 'zh' | 'en'
+/**
+ * @see https://fanyi-api.baidu.com/api/trans/product/apidoc#languageList
+ */
+type Lang =
+  'zh'
+  | 'wyw'
+  | 'cht'
+  | 'en'
+  | 'jp'
+  | 'kor'
 type FromLang = Lang | 'auto'
 
 type TranslateReq = {
@@ -27,17 +36,17 @@ type TranslateOption = {
   to: Lang
 }
 
-export class Translater {
+class Translater {
   constructor(private appid: string, private key: string) {
   }
 
-  async translate(q: string, options?: TranslateOption): Promise<string> {
+  async translate(q: string, options?: TranslateOption) {
     const { from = 'auto', to = 'en' } = options ?? {}
     const req: TranslateReq = {
       from,
       to,
       q,
-      salt: 'salt',
+      salt: randomBytes(20).toString('hex'),
       appid: this.appid,
       sign: '',
     }
@@ -53,6 +62,4 @@ export class Translater {
   }
 }
 
-export default Translater
-
-exports = Translater
+export = Translater

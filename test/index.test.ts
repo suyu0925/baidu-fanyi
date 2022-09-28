@@ -14,8 +14,13 @@ describe('test', () => {
     expect(data).toEqual('Chai dog in beret and black turtleneck sweater')
   })
 
-  test('to zh', async () => {
+  test('en to zh', async () => {
     const data = await trans.translate('hello world', { to: 'zh' })
+    expect(data).toEqual('你好，世界')
+  })
+
+  test('jp to zh', async () => {
+    const data = await trans.translate('こんにちは、世界', { to: 'zh' })
     expect(data).toEqual('你好，世界')
   })
 })
